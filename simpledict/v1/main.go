@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -42,5 +43,10 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Printf("%s\n", bodyText)
+	fmt.Println(string(bodyText))
+	buf, err := json.MarshalIndent(string(bodyText), "", "\t")
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf(string(buf))
 }
